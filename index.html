@@ -1,0 +1,67 @@
+<script>
+
+function printSpiral(items){
+  var totalrows = items.length
+  var firstrowcolumns = items[0].length
+  
+ /* if(totalrows !== totalcolumns){
+    console.log("Invalid matrix")
+    return false
+  }*/
+
+  var startrow = 0
+  var endrow = totalrows - 1
+  var startcolumn = 0
+  var endcolumn = firstrowcolumns - 1
+  var totalloops = Math.ceil(totalrows/2)
+  var result = []
+  
+  for(var r = 0; r < totalloops; r++){
+      var totalcolumns = items[r].length
+      
+      if(firstrowcolumns !== totalcolumns){
+      	console.log(`Invalid number of columns in row ${r + 1}`)
+        break
+      }
+      
+      // horizontal
+      for(var i = startcolumn; i <= endcolumn; i++){
+          result.push(items[startrow][i])
+      }
+      startrow++
+      
+      //vertical
+      for(var i = startrow; i <= endrow; i++){
+          result.push(items[i][endcolumn])
+      }
+      endcolumn--
+      
+      //inverse horizontal
+      for(var i = endcolumn; i >= startcolumn; i--){
+          result.push(items[endrow][i])
+      }
+      endrow--
+      
+      //inverse vertical
+      for(var i = endrow; i >= startrow; i--){
+          result.push(items[i][startcolumn])
+      }
+      startcolumn++
+      
+     // if(startcolumn >= endcolumn) break
+      
+  }
+  
+  return result
+}
+
+var items = [
+  [1,  2,  3,  4, -1],
+  [5,  6,  7,  8, -2],
+  [9,  10, 11, 12, -3],
+  [13, 14, 15, 16, -4],
+  [17, 18, 19, 20, -5]
+];
+
+console.log(printSpiral(items))
+</script>
